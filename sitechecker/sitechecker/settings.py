@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-(hlf@7pl&)3rr9ht=$m#k@#j!h#3o=(vm3@*nfkc=)a0&ij$=p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'www.motikog12.pythonanywhere.com',
+    'motikog12.pythonanywhere.com',
+]
 
 
 # Application definition
