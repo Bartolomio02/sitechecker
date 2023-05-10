@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<main class="form-signin w-25 m-auto">
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+
+      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      <div class="form-floating mb-3">
+        {{ form.email }}
+        {{ form.email.label_tag }}
+      </div>
+      <div class="form-floating mb-3">
+        {{ form.password }}
+        {{ form.password.label_tag }}
+      </div>
+      <div class="checkbox mb-3">
+        {{ form.remember_me }}
+        {{ form.remember_me.label_tag }}
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+  </main>
+{% endblock %}

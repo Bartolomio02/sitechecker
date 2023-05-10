@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+<!--    <link rel="stylesheet" href="{% static 'main/css/bootstrap-grid.css' %}">-->
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="{% static 'main/js/jquerry.min.js' %}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#InputUrlSubmit').click(function() {
+            var site = $('#InputUrl').val();
+            var add_domain = $('#auto-adding').is(':checked');
+            $.ajax({
+                url: '/api/scanhost',
+                type: 'POST',
+                data: {site: site
+                    , add_domain: add_domain},
+                success: function(data) {
+                    $('#ajax-result-main').html(data.host);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+      const accordionHeader = item.querySelector('.accordion-header');
+
+      accordionHeader.addEventListener('click', event => {
+        event.preventDefault();
+        item.classList.toggle('active');
+      });
+    });
+    </script>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'main/js/main.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.js' %}"></script>
+</body>
+</html>

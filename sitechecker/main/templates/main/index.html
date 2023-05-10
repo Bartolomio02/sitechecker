@@ -1,0 +1,95 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Site Checker{% endblock %}
+
+{% block content %}
+    <div class="container" style="padding: 0;">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+          <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none logo-nav">
+            <img class="bi" width="60" height="60" role="img" aria-label="logo" src="{% static 'main/img/logo.png' %}">
+          </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="my-link-nav p-nav selected-link-nav">SCAN</a></li>
+        </ul>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="center-link-nav my-link-nav p-nav ">PRICING</a></li>
+        </ul>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="my-link-nav p-nav">INFO</a></li>
+        </ul>
+
+        <div class="d-flex col-md-3 mb-2 mb-md-0 justify-content-end">
+          <div class="">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none profile-nav">
+              <img class="bi" width="60" height="60" role="img" aria-label="logo" src="{% static 'main/img/profile.png' %}">
+            </a>
+          </div>
+          <div class="autorization-nav">
+            <a href="#" style="display: block;" class="link-nav">Log in</a>
+            <a href="#" style="display: block;" class="link-nav link-nav-two">Sign up</a>
+          </div>
+        </div>
+      </header>
+      <div class="back-container" style="background: #F7F7F7;">
+        <img class="img-fluid back-container" src="{% static 'main/img/back.png' %}" alt="scan">
+        <div class="overlay">
+          <div class="form-container">
+            <div class="form-group d-flex scan-form">
+              <div class="scan-form-group">
+                <input type="text" class="input-url" id="InputUrl" aria-describedby="urlHelp" autocomplete="off">
+                <button type="button" class="btn-outline-scan" id="InputUrlSubmit">Scan</button>
+              </div>
+              <div style="" class="checkbox-auto-scan">
+                <label class="switch">
+                  <input id="auto-scan" name="auto-scan" type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+                <span class="auto-scan" for="auto-scan">Autoscan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-row">
+        <div class="col-4" style="z-index: 2;display: flex;justify-content: center;">
+          <div class=""></div>
+          <div class="accordion accordion-flush my-accordion my-scroll" id="accordionFlushExample">
+          </div>
+        </div>
+        <div class="col-4" style="z-index: 2;display: flex;justify-content: center;">
+          <ul class="host-list my-scroll" id="ajax-result-main"></ul>
+        </div>
+        <div class="col-4" style="z-index: 2;display: flex;justify-content: center;">
+          <div class="block-settings">
+            <div class="settings-item">
+              <p class="settings-title">number of threads</p> 
+              <div class="custom-number-input settings">
+                <button class="minus-btn" type="button">-</button>
+                <input type="text" name="quantity" value="1" pattern="[0-9]*" inputmode="numeric" id="thread-count">
+                <button class="plus-btn" type="button">+</button>
+              </div>
+            </div> 
+            <div class="settings-item">
+              <p class="settings-title">auto-scan domain</p>
+              <textarea name="auto-scan-domain" id="auto-scan-domain" cols="30" rows="5" class="settings"></textarea>
+            </div> 
+            <div class="settings-item">
+              <p class="settings-title">scan ports</p> 
+              <textarea name="scan-ports" id="scan-ports" cols="30" rows="2" class="settings scan-ports" placeholder="80,443"></textarea>
+            </div> 
+            <div class="settings-item">
+              <p class="settings-title">auto adding domains</p> 
+              <label class="switch">
+                <input id="auto-adding" name="auto-adding" type="checkbox" class="settings"> 
+                <span class="slider round"></span>
+              </label
+              ></div>
+            </div>
+          </div>
+      </div>
+    </div>
+{% endblock %}

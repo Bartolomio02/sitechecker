@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AJAX Example</title>
+    <script src="{% static 'main/js/jquerry.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#ajax-button').click(function() {
+                $.ajax({
+                    url: 'ajax',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#ajax-result').html(data.message);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>AJAX Example</h1>
+    <button id="ajax-button">Click me!</button>
+    <div id="ajax-result"></div>
+</body>
+</html>
