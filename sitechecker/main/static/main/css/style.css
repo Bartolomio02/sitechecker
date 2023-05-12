@@ -698,3 +698,153 @@ input:checked + .slider:before {
   margin-left: 0!important;
   margin-right: 0!important;
 }
+
+.basic {
+  width: 450px!important;
+  height: 500px;
+  background: #1F273A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.basic .price-btn-block {
+  justify-content: flex-end;
+}
+
+.advanced {
+  width: 450px!important;
+  height: 560px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.advanced .price-btn-block {
+  justify-content: flex-end;
+}
+
+.pricing-row {
+  position: relative;
+  margin-top: -170px!important;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-info {
+  display: flex;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 30px 15px 30px;
+}
+
+.price-name-green {
+  color: #84D265;
+}
+
+.price-count-green {
+  color: #FFFFFF;
+  padding: 10px 16px;
+  border-bottom: 3px solid #FFFFFF;
+}
+
+.price-name-blue {
+  color: #4F91CE;
+}
+
+.price-count-blue {
+  color: #4F91CE;
+  display: flex;
+  padding: 10px 16px;
+  border-bottom: 3px solid #4F91CE;
+  flex-direction: column;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 25px;
+  text-align: center;
+}
+
+
+.price-currency-blue {
+  color: #4F91CE;
+  margin: 0;
+  font-size: 16px;
+}
+
+.price-plus-block {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 60px;
+
+  text-transform: uppercase;
+
+  color: #1F273A;
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.price-plus-list {
+  list-style-type: none; /* Убираем маркеры по умолчанию */
+  padding: 0;
+  display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.price-custom-marker {
+  margin-right: 30px;
+  margin-left: 60px;
+}
+
+.price-btn-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.price-btn {
+  width: 220px;
+  height: 50px;
+  background: #339406;
+  border-radius: 27px;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: #FFFFFF;
+  margin: 0 22px 22px 0;
+
+}
+
+.price-btn:hover {
+  background: #2B7A04;
+}

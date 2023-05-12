@@ -46,8 +46,8 @@ class ScanHost(APIView):
         site = site.replace('https://', '')
         print('adding dom', str(adding_domains))
         if str(adding_domains) == 'false':
-            result_mx = subprocess.run(['ubuntu', '-c', f'host -t mx {site}'], stdout=subprocess.PIPE)
-            result_ns = subprocess.run(['ubuntu', '-c', f'host -t ns {site}'], stdout=subprocess.PIPE)
+            result_mx = subprocess.run(['host', '-t', 'MX', site], stdout=subprocess.PIPE)
+            result_ns = subprocess.run(['host', '-t', 'MX', site], stdout=subprocess.PIPE)
             output = result_mx.stdout.decode('utf-8') + result_ns.stdout.decode('utf-8')
             output = output.split('\n')
             output = [i for i in output if i != '']
@@ -70,8 +70,8 @@ class ScanHost(APIView):
                             if i != '3(NXDOMAIN':
                                 if i != '3(NXDOMAIN)':
                                     try:
-                                        result_mx = subprocess.run(['ubuntu', '-c', f'host -t mx {i}'], stdout=subprocess.PIPE)
-                                        result_ns = subprocess.run(['ubuntu', '-c', f'host -t ns {i}'], stdout=subprocess.PIPE)
+                                        result_mx = subprocess.run(['host', '-t', 'MX', i], stdout=subprocess.PIPE)
+                                        result_ns = subprocess.run(['host', '-t', 'MX', i], stdout=subprocess.PIPE)
                                         output += result_mx.stdout.decode('utf-8') + result_ns.stdout.decode('utf-8')
                                     except PermissionError:
                                         continue
@@ -90,8 +90,8 @@ class ScanHost(APIView):
     def get(self, request, *args, **kwargs):
         site = request.GET.get('site')
         site = site.replace('https://', '')
-        result_mx = subprocess.run(['ubuntu', '-c', f'host -t mx {site}'], stdout=subprocess.PIPE)
-        result_ns = subprocess.run(['ubuntu', '-c', f'host -t ns {site}'], stdout=subprocess.PIPE)
+        result_mx = subprocess.run(['host', '-t', 'MX', site], stdout=subprocess.PIPE)
+        result_ns = subprocess.run(['host', '-t', 'MX', site], stdout=subprocess.PIPE)
         output = result_mx.stdout.decode('utf-8') + result_ns.stdout.decode('utf-8')
         output = output.split('\n')
         output = [i for i in output if i != '']
@@ -304,7 +304,7 @@ def get_server_type(ip, port):
 
 
 def ssl_check(site):
-    result_ssl = subprocess.run(['ubuntu', '-c', f'ssl-checker/ssl_checker.py -H {site} -j'], stdout=subprocess.PIPE)
+    result_ssl = subprocess.run([f'ssl-checker/ssl_checker.py', '-H', f'{site} -j'], stdout=subprocess.PIPE)
     output = result_ssl.stdout.decode('utf-8')
     output_dict = json.loads(output)
     try:
@@ -327,7 +327,7 @@ def ssl_check(site):
 
 
 def mail_check(site):
-    result_mail = subprocess.run(['ubuntu', '-c', f'host -t MX {site}'], stdout=subprocess.PIPE)
+    result_mail = subprocess.run(['host', '-t', 'MX', site], stdout=subprocess.PIPE)
     output = result_mail.stdout.decode('utf-8')
     mail_list = output.split('\n')
     if mail_list[-1] == '':
@@ -336,7 +336,7 @@ def mail_check(site):
 
 
 def ns_check(site):
-    result_ns = subprocess.run(['ubuntu', '-c', f'host -t NS {site}'], stdout=subprocess.PIPE)
+    result_ns = subprocess.run(['host', '-t', 'NS', site], stdout=subprocess.PIPE)
     output = result_ns.stdout.decode('utf-8')
     ns_list = output.split('\n')
     if ns_list[-1] == '':
@@ -345,7 +345,7 @@ def ns_check(site):
 
 
 def cname_check(site):
-    result_cname = subprocess.run(['ubuntu', '-c', f'host -t CNAME {site}'], stdout=subprocess.PIPE)
+    result_cname = subprocess.run(['host', '-t', 'CNAME', site], stdout=subprocess.PIPE)
     output = result_cname.stdout.decode('utf-8')
     cname_list = output.split('\n')
     if cname_list[-1] == '':
@@ -354,7 +354,7 @@ def cname_check(site):
 
 
 def ipv6_check(site):
-    result_ip = subprocess.run(['ubuntu', '-c', f'host -t AAAA {site}'], stdout=subprocess.PIPE)
+    result_ip = subprocess.run(['host', '-t', 'AAAA', site], stdout=subprocess.PIPE)
     output = result_ip.stdout.decode('utf-8')
     ip_list = output.split('\n')
     if ip_list[-1] == '':
@@ -363,7 +363,7 @@ def ipv6_check(site):
 
 
 def ip_port_check(site, scan_ports=None):
-    result_ip_port = subprocess.run(['ubuntu', '-c', f'host -t A {site}'], stdout=subprocess.PIPE)
+    result_ip_port = subprocess.run(['host', '-t', 'A', site], stdout=subprocess.PIPE)
     output = result_ip_port.stdout.decode('utf-8')
     ip_port_list = output.split('\n')
     ip_port_dict = {}
@@ -734,3 +734,7 @@ def checker_ssl_altname(hostname):
         # remove leading "*." from alt names
         alt_names_list = [re.sub(r'^\*\.', '', name) for name in alt_names_list]
         return list(set(alt_names_list))
+
+
+def pricing(request):
+    return render(request, "main/pricing.html")
