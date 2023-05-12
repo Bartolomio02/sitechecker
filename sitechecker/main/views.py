@@ -734,3 +734,7 @@ def checker_ssl_altname(hostname):
         # remove leading "*." from alt names
         alt_names_list = [re.sub(r'^\*\.', '', name) for name in alt_names_list]
         return list(set(alt_names_list))
+
+
+def pricing(request):
+    return render(request, "main/pricing.html")
