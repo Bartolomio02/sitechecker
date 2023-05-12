@@ -1,1 +1,1 @@
-web gunicorn django-sitecheker.wsgi:application --log-file -
+web gunicorn django-sitecheker.wsgi --log-file -
