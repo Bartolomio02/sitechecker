@@ -1,1 +1,1 @@
-web: gunicorn sitechecker.wsgi --log-file -
+web: gunicorn sitechecker.sitechecker.wsgi --log-file -
